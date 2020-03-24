@@ -9,7 +9,6 @@ jobs:
     - checkout
     - sonarcloud/scan
 workflows:
- version: 2.1
     jobs:
       - build:
           context: sonarcloud
