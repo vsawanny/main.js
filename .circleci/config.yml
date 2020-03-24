@@ -1,20 +1,21 @@
-version: 2.1
-orbs:
-  node: circleci/node@1.1.6
-jobs:
-  build-and-test:
-    executor:
-      name: node/default
-      # working_directory: ~/demo
+version: 2
 
+jobs:
+  build:
+    docker:
+        - image: circleci/node:10.16.3
     steps:
+      ## Fetch all release tags
       - checkout
-      - run: npm install
-      #- run: npm test
-      # - run: npm install -D sonarqube-scanner
+      - run:
+          name: Install Node.js dependencies with Npm
+          command: npm install
+      - run:
+          name: Test
+          command: CI=true npm run coverage
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.0
-
+  
 workflows:
     build-and-test:
       jobs:
