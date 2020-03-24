@@ -16,7 +16,7 @@ jobs:
          name: Run Sonarqube scanner
          command: |
            export SONARQUBE_TOKEN=e5d5a9da856ae9f6e7c33c22a4c036e7075cda55
-           eval ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -Dsonar.projectKey=ark \
+           #eval ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -Dsonar.projectKey=ark \
            -Dsonar.sources=./ \
            -Dsonar.sourceEncoding=UTF-8 \
            -Dsonar.host.url=https://sonarcloud.io/ \
