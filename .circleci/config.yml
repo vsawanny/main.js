@@ -5,12 +5,20 @@ jobs:
   build-and-test:
     executor:
       name: node/default
+    steps:
+      - checkoutversion: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
       # working_directory: ~/demo
 
     steps:
       - checkout
       - run: npm install
-      - run: npm test
+      # - run: npm test
       # - run: npm install -D sonarqube-scanner
       - run:
          name: Run Sonarqube scanner
@@ -23,6 +31,14 @@ jobs:
            -Dsonar.projectVersion=0.9.4 \
            -Dsonar.login=${SONARQUBE_TOKEN} 
 
+workflows:
+    build-and-test:
+      jobs:
+        - build-and-test
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
 workflows:
     build-and-test:
       jobs:
