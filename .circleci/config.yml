@@ -1,23 +1,15 @@
-version: 2
+version: 2.1
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.0
-
 jobs:
   build:
     docker:
-        - image: circleci/node:10.16.3
+      - image: circleci/node:10.16.3
     steps:
-      ## Fetch all release tags
-      - checkout
-      - run:
-          name: Install Node.js dependencies with Npm
-          command: npm install
-      - sonarcloud/scan 
-
-  
+    - checkout
+    - sonarcloud/scan
 workflows:
-  version: 2
-  build_and_test_publish:
+  my-workflow:
     jobs:
-       - build:
-            context: sonarcloud
+      - build:
+          context: sonarcloud
