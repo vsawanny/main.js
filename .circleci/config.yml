@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.0
 
 jobs:
   build:
@@ -10,11 +12,8 @@ jobs:
       - run:
           name: Install Node.js dependencies with Npm
           command: npm install
-      - run:
-          name: Test
-          command: CI=true npm run coverage
-orbs:
-  sonarcloud: sonarsource/sonarcloud@1.0.0
+      - sonarcloud/scan 
+
   
 workflows:
   version: 2
