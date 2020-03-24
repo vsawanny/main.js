@@ -12,18 +12,11 @@ jobs:
       - run: npm install
       #- run: npm test
       # - run: npm install -D sonarqube-scanner
-      - run:
-         name: Run Sonarqube scanner
-         command: |
-           export SONARQUBE_TOKEN=e5d5a9da856ae9f6e7c33c22a4c036e7075cda55
-           #eval ./sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner -Dsonar.projectKey=ark \
-           
-           #-Dsonar.sourceEncoding=UTF-8 \
-           -Dsonar.host.url=https://sonarcloud.io/ \
-           -Dsonar.projectVersion=0.9.4 \
-           -Dsonar.login=${SONARQUBE_TOKEN} 
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.0
 
 workflows:
     build-and-test:
       jobs:
-        - build-and-test
+        - build-and-test:
+            context: sonarcloud
