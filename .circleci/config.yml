@@ -8,11 +8,35 @@ jobs:
     steps:
     - checkout
     - sonarcloud/scan
+    - run:
+          name: Run Sonarqube scanner
+          command: |
+                
+                -Dsonar.host.url=https://sonarcloud.io/ \
+                -Dsonar.projectKey=Main-project-key \
+                -Dsonar.organization=vsawanny
+               
+
+
+
 workflows:
   my-workflow:
     jobs:
       - build:
           context: sonarcloud
+
+
+
+          
+
+
+
+
+
+
+
+
+
 
 
 
